@@ -23,7 +23,26 @@ app.get('/math/circle/:r', (req, res) => {
   res.json(result);
 });
 
-//TODO2
+function calculateRect(a,b) {
+  const area = a*b;
+  const circumference = 2*a+2*b;
+  return {
+      area: area.toFixed(2),
+      circumference: circumference.toFixed(2)
+  };
+}
+
+app.get('/math/rectangle/:width/:height', (req, res) => {
+  const width = parseFloat(req.params.width);
+  const height = parseFloat(req.params.height);
+
+  if (width<=0 || height <= 0 || isNaN(width) || isNaN(height)) {
+      return res.status(400).json({ error: 'Invalid radius' });
+  }
+
+  const result = calculateRect(width,height);
+  res.json(result);
+});
 
 
 //TODO3
