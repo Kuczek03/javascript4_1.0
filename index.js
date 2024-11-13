@@ -3,9 +3,23 @@
 const express = require('express');
 const app = express();
 
-// define endpoint for exercise 1 here
+function calculateCircle(r) {
+  const area = Math.PI * Math.pow(r, 2);
+  const circumference = 2 * Math.PI * r;
+  return {
+      area: area.toFixed(2),
+      circumference: circumference.toFixed(2)
+  };
+}
+
 app.get('/math/circle/:r', (req, res) => {
-//TODO1  
+  const radius = parseFloat(req.params.r);
+
+  if (isNaN(radius) || radius <= 0) {
+      return res.status(400).json({ error: 'Invalid radius' });
+  }
+
+  const result = calculateCircle(radius);
   res.json(result);
 });
 
