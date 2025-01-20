@@ -2,6 +2,14 @@
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:8080', // Zewnętrzna domena
+  methods: ['GET', 'POST'], // Dozwolone metody
+  allowedHeaders: ['Content-Type', 'Authorization'], // Dozwolone nagłówki
+  credentials: true // Zezwala na przesyłanie ciasteczek
+}));
 
 function calculateCircle(r) {
   const area = Math.PI * Math.pow(r, 2);
