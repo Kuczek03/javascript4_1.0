@@ -100,3 +100,24 @@ let lameJoke = [
     {'joke': 'Jak nazywa się bardzo szybki programista?', 'response': 'Błyskawiczny koder!'},
     {'joke': 'Co mówi chmura do serwera?', 'response': 'Widzę, że się przegrzewasz!'}
 ];
+
+// Endpoint 1: Zwraca kategorie
+app.get('/jokebook/categories', (req, res) => {
+  res.json(categories);
+});
+
+// Endpoint 2: Zwraca losowy dowcip z wybranej kategorii
+app.get('/jokebook/joke/:category', (req, res) => {
+  const { category } = req.params;
+
+  // Sprawdzamy, czy kategoria jest prawidłowa
+  if (category !== 'funnyJoke' && category !== 'lameJoke') {
+    return res.json({ 'error': `no jokes for category ${category}` });
+  }
+
+  // Wybieramy losowy dowcip z kategorii
+  let jokeList = category === 'funnyJoke' ? funnyJoke : lameJoke;
+  let randomJoke = jokeList[Math.floor(Math.random() * jokeList.length)];
+
+  res.json(randomJoke);
+});
