@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+  background-color: #f4f4f9;
+}
+
+.category-button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.category-button:hover {
+  background-color: #45a049;
+}
+
+.joke {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}

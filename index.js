@@ -81,32 +81,25 @@ app.get('/math/power/:base/:exponent', (req, res) => {
   
 });
 
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
-
 let categories = ['funnyJoke', 'lameJoke'];
 
 let funnyJoke = [
-    {'joke': 'Dlaczego komputer poszedł do lekarza?', 'response': 'Bo złapał wirusa!'},
-    {'joke': 'Dlaczego komputer nie może być głodny?', 'response': 'Bo ma pełny dysk!'},
-    {'joke': 'Co mówi jeden bit do drugiego?', 'response': 'Trzymaj się, zaraz przyjdzie bajt!'}
+  { 'joke': 'Dlaczego komputer poszedł do lekarza?', 'response': 'Bo złapał wirusa.' },
+  { 'joke': 'Dlaczego komputer nie może być głodny?', 'response': 'Bo ma pełny dysk.' },
+  { 'joke': 'Co mówi jeden bit do drugiego?', 'response': 'Trzymaj się, zaraz będziemy w parze.' }
 ];
 
 let lameJoke = [
-    {'joke': 'Dlaczego programiści preferują noc?', 'response': 'Bo w nocy jest mniej bugów!'},
-    {'joke': 'Jak nazywa się bardzo szybki programista?', 'response': 'Błyskawiczny koder!'},
-    {'joke': 'Co mówi chmura do serwera?', 'response': 'Widzę, że się przegrzewasz!'}
+  { 'joke': 'Dlaczego programiści preferują noc?', 'response': 'Bo w nocy jest mniej bugów.' },
+  { 'joke': 'Jak nazywa się bardzo szybki programista?', 'response': 'Błyskawica.' }
 ];
 
-// Endpoint 1: Zwraca kategorie
+// Obsługuje żądanie kategorii
 app.get('/jokebook/categories', (req, res) => {
   res.json(categories);
 });
 
-// Endpoint 2: Zwraca losowy dowcip z wybranej kategorii
+// Obsługuje żądanie losowego żartu z danej kategorii
 app.get('/jokebook/joke/:category', (req, res) => {
   const { category } = req.params;
 
@@ -115,9 +108,16 @@ app.get('/jokebook/joke/:category', (req, res) => {
     return res.json({ 'error': `no jokes for category ${category}` });
   }
 
-  // Wybieramy losowy dowcip z kategorii
+  // Wybieramy losowy żart z kategorii
   let jokeList = category === 'funnyJoke' ? funnyJoke : lameJoke;
   let randomJoke = jokeList[Math.floor(Math.random() * jokeList.length)];
 
   res.json(randomJoke);
+});
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
