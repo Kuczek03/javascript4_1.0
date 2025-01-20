@@ -86,3 +86,17 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+let categories = ['funnyJoke', 'lameJoke'];
+
+let funnyJoke = [
+    {'joke': 'Dlaczego komputer poszedł do lekarza?', 'response': 'Bo złapał wirusa!'},
+    {'joke': 'Dlaczego komputer nie może być głodny?', 'response': 'Bo ma pełny dysk!'},
+    {'joke': 'Co mówi jeden bit do drugiego?', 'response': 'Trzymaj się, zaraz przyjdzie bajt!'}
+];
+
+let lameJoke = [
+    {'joke': 'Dlaczego programiści preferują noc?', 'response': 'Bo w nocy jest mniej bugów!'},
+    {'joke': 'Jak nazywa się bardzo szybki programista?', 'response': 'Błyskawiczny koder!'},
+    {'joke': 'Co mówi chmura do serwera?', 'response': 'Widzę, że się przegrzewasz!'}
+];
